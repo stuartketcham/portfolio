@@ -1,0 +1,179 @@
+/*
+   Author:    	Stuart Ketcham
+   Filename:    portfolio.css
+   Date:        01/17/2021
+   Project:     Stuart Ketcham Portfolio
+*/
+
+
+/* reset styles */
+html {
+   font-size: 16px;
+}
+a, article, body, div, footer, header, h1, h2, h3, nav, p, img, figure, figcaption {
+   border: 0;
+   padding: 0;
+   margin: 0;
+}
+
+body {
+  background-color: #505050;
+}
+
+.main {
+   max-width: 950px;
+   margin: 0 auto;
+   position: relative;
+   background-color: white;
+}
+
+
+/* header section */
+h1 {
+   text-align: center;
+   font-family: Bitter, "Times New Roman", Times, serif;
+   font-weight: 500;
+   font-size: 2.3em;
+   padding: 70px 0;
+}
+h2 {
+   text-align: center;
+   padding: 10px 0 0;
+   font-weight: 100;
+}
+h3 {
+   margin: 5px 0;
+}
+
+/* site navigation bar */
+nav.sitenavigation {
+   color: green;
+   text-align: center;
+   font-family: 'PT Sans', sans-serif;
+   font-weight: 700;
+   background-color: #0C80A1;
+   height: 40px;
+}
+nav.sitenavigation p {
+   margin: 0.3em 0.5em;
+   display: inline-block;
+}
+nav.sitenavigation div {
+   padding: 0.3em 0.5em;
+   display: inline-block;
+}
+nav.sitenavigation a:link {
+   text-decoration: none;
+   color: white;
+}
+nav.sitenavigation div:hover, nav.sitenavigation a:focus {
+   background-color: #085a72;
+   transition: all .2s linear;
+}
+nav.sitenavigation a:visited {
+   color: white;
+}
+
+.currentpage {
+    background-color: #085a72;
+}
+
+/* main content */
+.lead {
+   margin-left: auto;
+   margin-right: auto;
+   width: 70%;
+}
+
+.contactme {
+   display: flex;
+   line-height: 4;
+   unicode-bidi:bidi-override;
+   direction: rtl;
+   justify-content: center;
+}
+
+figcaption {
+   font-size: 0.5em;
+   text-align: center;
+}
+
+.headerimage {
+   width: 100%;
+}
+
+.flexcenter {
+   display: flex;
+   justify-content: center;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.flexneatcolumn {
+   width: 35%;
+   padding: 100px 20px 20px 20px;
+}
+
+.flexonethirdcolumn {
+   width: 33%;
+   padding: 0 0 100px;
+}
+
+.flextwothirdscolumn {
+   width: 66%;
+   padding: 20px 0 100px;
+}
+
+.flextwothirdscolumn p {
+   font-family: 'PT Sans', sans-serif;
+   padding: 15px 40px 0;
+   line-height: 2;
+}
+
+.linked img {
+   width:30%;
+}
+
+.imgSellMyself {
+   width: 300px;
+}
+
+.icanheader {
+   font-family: 'Times New Roman', serif;
+   text-align: center;
+   padding: 10px;
+}
+
+.icantext {
+   font-family: 'PT Sans', sans-serif;
+   font-size: 0.8em;
+   padding-top: 20px;
+}
+
+.imgMyself {
+   border-radius: 50%;
+   width: 80%;
+   margin: 20px;
+}
+
+/* footer section */
+footer {
+   padding: 50px 0;
+}
+
+footer img {
+   width:100px;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.LI-profile-badge {
+   padding-top: 100px;
+   text-align: center;
+}

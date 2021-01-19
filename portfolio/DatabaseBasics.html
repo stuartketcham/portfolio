@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+   <head>
+      <!--
+         Author:      Stuart Ketcham  
+         Date:        12/22/2020     
+         Final Project for Bellevue College Technical Writing Certification class converted to HTML
+      -->   
+      <style>
+
+         h1, h2, h3 {
+            padding-top: 0;
+            margin-top: 0;
+         }
+         h3 {
+            margin-left: 20px;
+         }
+         img { 
+            border: 0; 
+         }
+         a {
+            color:darkgray
+         }
+         table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+         }
+         td {
+            padding:0.1in 0.1in 0.1pt 0.1in;
+            font-size:11.5pt;
+         }
+         tr {
+            padding:0.5in 0in 1.0pt 0in;
+         }
+
+         .TableOfContents { 
+            margin-left: 40px;
+         }
+         .CodeFormat1 { 
+            margin-left: 40px;
+         }
+         .CodeFormat2 { 
+            margin-left: 80px;
+         }
+         .CodeBlock { 
+            background-color:white;
+            line-height: 0.5em;
+            padding: 25px 0px 25px 0px;
+            margin-left: 40px;
+            margin-right: 100px;
+         }
+         .ul-01 {
+            margin-left: 20px;
+         }
+         .ol-01,.ul-02 {
+            margin-left: 40px;
+         }
+         .NormalFormat1 {}
+         .NormalFormat2 {
+            margin-left: 20px;
+         }
+         .NormalFormat3 {
+            margin-left: 40px;
+         }
+         .Heading1 {
+            border-bottom:double #8DB3E2 1.5pt;
+            padding:0.5in 0in 1.0pt 0in;
+         }
+         .Heading2 {
+            border-bottom:double #FFFFFF 0.7pt;
+            padding:0.5in 0in 1.0pt 0in;
+         }
+         .SQLKeywords {
+            font-size:9.5pt; 
+            font-family:Consolas; color:blue;
+            line-height: 0.5em;
+         }
+         .SQLFunctions {
+            font-size:9.5pt; 
+            font-family:Consolas; 
+            color:fuchsia;
+            line-height: 0.5em;
+         }
+         .SQLFieldNames {
+            font-size:9.5pt; 
+            font-family:Consolas; 
+            color:black;
+            line-height: 0.5em;
+         }
+         .SQLString {
+            font-size:9.5pt; 
+            font-family:Consolas; 
+            color:red;
+            line-height: 0.5em;
+         }
+         .SQLKeyword2 {
+            font-size:9.5pt; 
+            font-family:Consolas; 
+            color:gray;
+            line-height: 0.5em;
+         }
+         .SQLPunctuation {
+            font-size:9.5pt; 
+            font-family:Consolas; 
+            color:gray;
+            line-height: 0.5em;
+         }
+         .SQLNumbers {
+            font-size:9.5pt; 
+            font-family:Consolas; 
+            color:black;
+            line-height: 0.5em;
+         }
+         .RowHeading {
+            font-weight: bold;
+         }
+         #ExcelSQLCompare {
+            width:800px;
+            border:1px;
+         }
+      </style>
+      <title>Database Basics</title>
+      <meta name="description" content="For beginners: how and why to use a database.">      
+   </head>
+
+
+<div>
+	
+	<img src="https://stuartketcham.files.wordpress.com/2020/12/maarten-van-den-heuvel-8eznkvlqosk-unsplash.jpg" alt="Ordered Data" width="800" height="400">
+
+	<div class="Heading2">
+	<h2>Table of Contents</h2>
+	</div>
+
+	<p class="MsoToc1"><a href="#_Toc45717242">1.&nbsp;Introduction</a></p>
+	<p class="MsoToc1"><a href="#_Toc45717243">2.&nbsp;What is a database?</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717244">2.1 Comparing MS SQL Server to MS Excel</a></p>
+	<p class="MsoToc1"><a href="#_Toc45717245">3.&nbsp;Why is a database better?</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717246">3.1 Unique ID</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717247">3.2 Relational data</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717248">3.3 Transactions</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717249">3.4 Data Rule Enforcement</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717250">3.5 Backups</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717251">3.6 Data centralization</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717252">3.7 Size</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717253">3.8 Product comparison summary</a></p>
+	<p class="MsoToc1"><a href="#_Toc45717254">4.&nbsp;When should you use a database?</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717255">4.1 Size</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717256">4.2 Complexity</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717257">4.3 Cost</a></p>
+	<p class="MsoToc1"><a href="#_Toc45717258">5.&nbsp;How a database works</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717259">5.1 Under the hood</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717260">5.2 Data flow</a></p>
+	<p class="MsoToc1"><a href="#_Toc45717261">6. Introduction to SQL</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717262">6.1 DDL (Data Definition Language)</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717263">6.2 DML (Data Definition Language)</a></p>
+	<p class="MsoToc1"><a href="#_Toc45717264">7.&nbsp;Performance</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717265">7.1 Indexes</a></p>
+	<p class="TableOfContents"><a href="#_Toc45717266">7.2 Execution plans</a></p>
+	<p class="MsoToc1"><a href="#_Toc45717267">8.&nbsp;Conclusion</a></p>
+	<p class="MsoToc1"><a href="#_Toc45717268">9.&nbsp;Appendix</a></p>
+	<p class="MsoToc1"><a href="#_Toc45717269">10. Disclaimer</a></p>
+	<p class="MsoToc1"><a href="#_Toc45717270">11. Copyright</a></p>
+
+	<div class="Heading1">
+	<h1><a id="_Toc45717242"></a>1.Introduction</h1>
+	</div>
+
+	<p class="NormalFormat1">You have questions about databases, and I am here to answer
+	them. I have nearly 20 years of professional experience working with Microsoft
+	(MS) SQL Server, Oracle, Teradata, and MS Access. I intend to share with you
+	what a database is, how to decide when you need a database and cover the basics
+	of how to use one.</p>
+
+	<p class="NormalFormat1">The database I selected for use in this document is MS SQL
+	Server. I like its balance of ease-of-use and powerful features. It is very
+	widely used and is the database product I worked with the most; over 13 years
+	of developing applications with its technology.</p>
+
+	<p class="NormalFormat1">You will find that a database is the most powerful option
+	for storing, serving, and organizing data. The flexibility, reliability, and
+	performance offered in an MS SQL Server database cannot be matched by other
+	methods of storing data, like MS Excel, or lower-tier database offerings like
+	MS Access.</p>
+
+	<p class="NormalFormat1">Any set of data from sales records, statistics, or employee
+	performance reports to airplane routes, music scores, or recipes can benefit
+	from the features a database can provide. People around the world leverage the
+	structure, reliability, and power of databases. So can you.</p>
+
+	<p class="NormalFormat1">In addition, if you plan on pursuing a career in databases,
+	or even just want to try things out to further your education, I think you will
+	find the information here to be of great interest.</p>
+
+	<div class="Heading1">
+	<h1><a id="_Toc45717243"></a>2.What is a database?</h1>
+	</div>
+
+	<p class="NormalFormat1">At its most basic, a database is a system that imposes
+	structure on data. While that may not mean software 100% of the time, you
+	won’t see a paper "database" very often anymore.</p>
+
+	<p class="NormalFormat1">There is a wide variety of database software available
+	today. Modern databases can be geared to be easy to use (MS Access) or have
+	free licenses (PostgreSQL, MySQL, MongoDB) or are the more traditional
+	enterprise-level platforms that have huge flexibility, scalability, and support
+	(Microsoft SQL Server, Oracle, IBM DB2).</p>
+
+	<p class="NormalFormat1">What they all have in common is that they take that idea of
+	organizing data, and they build on it extensively. Even the free database
+	options offer a huge number of features and a wide variety of programmability.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717244"></a>2.1 Comparing MS SQL Server to MS Excel</h2>
+	</div>
+
+	<p class="NormalFormat2">Why am I comparing MS SQL Server to MS Excel? Many people
+	are familiar with using Excel to store organized data, while few have worked
+	directly with databases. It offers a point of comparison that people can use
+	as a basis for understanding databases.</p>
+
+	<p class="NormalFormat2">Why am I not talking about MS Access? If you are here to
+	learn database basics for a career, there are far more jobs using MS SQL Server
+	than MS Access. Alternately, if you are here looking for business solutions, I
+	would encourage you to skip MS Access. It doesn't offer as many features, and
+	if you are outgrowing Excel, Access is not likely to be a long-term solution.</p>
+
+	<h3>2.1.1 Similarities</h3>
+
+	<p class="NormalFormat3">Conceptually, you could look at SQL Server tables as each a
+	single spreadsheet. However, SQL Server tables and Excel spreadsheets both
+	offer many features that the other doesn’t have.</p>
+
+	<p class="NormalFormat3">A spreadsheet and a database table both store data in rows
+	and columns. Both products offer tools that allow you to sort your data, filter
+	your data, or search for specific pieces of data within your larger set of data.</p>
+
+	<p class="NormalFormat3">They both offer a wide array of functions to manipulate your
+	data, though the functions offered in each differ substantially. &nbsp;I feel
+	specifics about those functions go beyond the scope of an introduction, so we
+	won’t be covering those here.</p>
+
+	<h3>2.1.2 Differences</h3>
+
+	<p class="NormalFormat3">Excel is data presentation software even more than it is data
+	storage software. The flexibility it offers reflects that. An Excel
+	spreadsheet can store and display many differently structured chunks of data
+	combined on the same sheet. SQL Server’s tables are each a single grid of
+	information with a single structure.</p>
+
+	<p class="NormalFormat3">Excel offers visualization tools, like graphs and pivot
+	tables. SQL Server is intended as a backend data source for other applications
+	that would provide the visualization, including Excel.</p>
+
+	<p class="NormalFormat3">Excel offers simplicity and user-friendliness that a
+	database by itself can’t offer. Anyone can open a new Excel spreadsheet and
+	start typing. Database tables take more time and training to set up and use.</p>
+
+	<p class="NormalFormat3">The simplicity that Excel offers reflects its place, as I
+	see it. If you have simple data or need to present data to users, Excel is
+	often an excellent solution. As your data needs grow, Excel often cannot
+	fulfill them anymore, and it’s time to look at a database.</p>
+
+	<div class="Heading1">
+	<h1><a id="_Toc45717245"></a>3.Why is a database better?</h1>
+	</div>
+
+	<p class="NormalFormat1">I’d like to talk about the advantages of MS SQL Server and
+	give you some ideas on why you might prefer to use a database over something
+	like Excel. There are many powerful features offered by a database that a
+	spreadsheet simply can’t match. Most of these features form the "structure" we
+	are imposing on the data we are storing in the database. You can think of the
+	structure as a set of laws intended to impose order on an otherwise "wild west"
+	town made of data.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717246"></a>3.1 Unique ID</h2>
+	</div>
+
+	<p class="NormalFormat2">One thing seldom found in software outside a database is a
+	primary key. A primary key is a unique code that enforces that uniqueness onto
+	the data. No duplicates are allowed.</p>
+
+	<p class="NormalFormat2">Social Security numbers, a UPC code on a product, or bank
+	account numbers are all examples of primary keys. For example, there should
+	never be two people with the same Social Security number. You can easily see
+	the problems that would be caused if two people were trying to collect Social
+	Security income utilizing the same number. They need to be unique or the
+	process can’t work.</p>
+
+	<p class="NormalFormat2">Creating and enforcing something like a primary key is very
+	hard to do in Excel. In SQL Server, it is a short <a href="#_Toc45717261">SQL statement</a>
+	that developers include in nearly every table.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717247"></a>3.2 Relational data</h2>
+	</div>
+
+	<p class="NormalFormat2">One of the most important features of database software is
+	that it will allow you to interrelate your data. In this section, we will use
+	an example of a list of customers, a list of products, and a table that relates
+	those two, showing which customers bought which products, called "sales".</p>
+
+	<p class="NormalFormat2"><img id="RelationalData" src="https://gdurl.com/4OX0h" width="468" height="337" ></p>
+
+	<p class="NormalFormat2">You can set up connections between tables that enforce rules
+	between them. These are referred to as foreign keys. &nbsp;A foreign key is a data
+	integrity rule that effectively makes that connection between two tables. &nbsp;These
+	tell the database, and a developer, how the data relates between the tables.</p>
+
+	<p class="NormalFormat2">In the sales table, only the ID of the customer and the ID
+	of the product will be stored, not their names. This comes in very handy when
+	a product name changes. You just update one record in the products table, and
+	any applications or reports that use SQL based on these tables will
+	automatically pick up the change.</p>
+
+	<p class="NormalFormat2">In addition, the connection between the tables prevents you
+	from recording a sale for a customer who doesn’t exist in the "customers"
+	table, or a product that isn’t in the products table. In other words, it
+	prevents clearly incorrect data from being recorded.</p>
+
+	<p class="NormalFormat2">If you were storing data like this in Excel, automatic
+	updates and this type of rule enforcement are unavailable. You would likely
+	need to update multiple records, increasing work and the likelihood of error.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717248"></a>3.3 Transactions</h2>
+	</div>
+
+	<p class="NormalFormat2">Transactions are the basis for trustworthy data.&nbsp;
+	Transactions are a validation that any update to database data was completed
+	successfully.</p>
+
+	<p class="NormalFormat2">When a change is submitted to a database the application
+	submitting the change isn’t just throwing out an update and trusting that the
+	data has been changed. The application gets back either a completion message
+	or an error, so it can move on to the next line of code (if any) or handle any
+	error generated by the attempted database update.</p>
+
+	<p class="NormalFormat2">Multiple updates to a database can be linked together with
+	code into a single transaction. This means that if any one of the updates
+	fails the whole transaction fails, and no changes are committed to the database
+	data.</p>
+
+	<p class="NormalFormat2">The classic database transaction example is a bank transfer
+	of funds between two accounts. Money is deducted from one account and added to
+	another. Both updates must be completed successfully or neither update is
+	kept.</p>
+
+	<p class="NormalFormat2">What if an application deducted money from one account but
+	the computer running the code was turned off before the application could add
+	it to the other account? &nbsp;If the application is not properly coded, the money
+	just disappears.</p>
+
+	<p class="NormalFormat2">With a database transaction linking both updates, it
+	guarantees the money cannot be lost. The transaction says that the withdrawal
+	cannot happen if the deposit doesn’t happen too, and the application attempting
+	the update will have an error.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717249"></a>3.4 Data Rule Enforcement</h2>
+	</div>
+
+	<p class="NormalFormat2">There is an old saying in computer programming: "garbage in,
+	garbage out". This saying implies that no matter how good your program is, if
+	your users give it bad input, you will get bad results. This applies very much
+	with unstructured data. Unstructured data is likely to have "garbage" entered
+	in, which can cause many issues when it comes time to consume that data.</p>
+
+	<p class="NormalFormat2">Millions of people around the world store important data in
+	Excel. While it is possible to automatically enforce rules in Excel, very few
+	users do so, and even fewer do it properly.</p>
+
+	<p class="NormalFormat2">The first level of data rule enforcement is data type (e.g.
+	integer, decimal, text, date, binary). You assign a data type to every column
+	in a table, and if the wrong type of data is attempted to be inserted into even
+	one of the columns, then the whole insert attempt is rejected.</p>
+
+	<p class="NormalFormat2">As discussed under <a href="#_Toc45717247">Relational data</a>
+	, foreign keys are another type of data rule enforcement.</p>
+
+	<p class="NormalFormat2">Data rule enforcement is built into good database software.&nbsp;
+	Beyond the fundamental types of rule enforcement I just mentioned, SQL Server
+	gives you the ability to apply incredibly sophisticated rules, should you
+	desire it.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717250"></a>3.5 Backups</h2>
+	</div>
+
+	<p class="NormalFormat2">Database backups are more robust than the sorts of backup solutions
+	with which most people are familiar. In addition to file backups done to your
+	database, every single transaction hitting a database is logged as it completes
+	successfully. This allows not only reliable data but also means you can
+	restore a database to a specific point in time.</p>
+
+	<p class="NormalFormat2">You can think of the transaction log as a list of every
+	single INSERT, UPDATE, and DELETE command issued to the database in the order
+	in which they happened.</p>
+
+	<p class="NormalFormat2" style="page-break-after:avoid;">Conceptual example of a
+	transaction log</p>
+
+	<p class="NormalFormat2"><img id="TransactionLog" src="https://gdurl.com/sFcR" width="577" height="94" ></p>
+
+	<p class="NormalFormat2">Imagine a scenario where a developer updates an application
+	with buggy code that inadvertently deletes thousands of rows of vital data.&nbsp;
+	After the developer halts the bad updates, they can combine the latest database
+	file backup with the database transaction logs up to the point in time when
+	things started to go wrong. This will effectively take the database back in
+	time to the point they indicate.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717251"></a>3.6 Data centralization</h2>
+	</div>
+
+	<p class="NormalFormat2">Data centralization is not the physical centralization of
+	data, but rather the process of setting up your different datasets so that they
+	can be accessed together. This usually means loading many datasets onto a
+	single database server (or linked servers) so the data can be combined,
+	correlated, or compared.</p>
+
+	<p class="NormalFormat2">Bringing your data together in one location solves crucial
+	problems, saves works, and creates new opportunities. Data centralization is a
+	task that gets more and more important when the number of different datasets,
+	and their size, grow larger.</p>
+
+	<h3>3.6.1 Solving problems</h3>
+
+	<p class="NormalFormat3">Imagine a company that has grown rapidly recently. A single
+	group of employees used to maintain the sales records in Excel, but that had to
+	be split into regional groups to accommodate the number of sales, as the
+	company grew. Each region was given a copy of the employee spreadsheet, the
+	customer spreadsheet, and must track their own sales spreadsheet.</p>
+
+	<ul class="ul-02">
+	<li>Overhead: Having multiple people updating lists of employees and
+	customers is time wasted that could be spent doing other things.</li>
+
+	<li>Consistency: Multiple different people in the company trying to maintain
+	lists of employees, customers, and sales is going to create a lot of errors.&nbsp;
+	Lost time to correct errors, mishandled sales, and lost customers all add up to
+	money wasted.</li>
+
+	<li>Reporting: Every time the CEO wants a report on sales, they must
+	wait for each region to report their sales and then have all the data combined.</li>
+	</ul>
+
+	<p class="NormalFormat3">The decision is made to move to a database, and I.T. has
+	been tasked to keep centralized tables updated with all employee and customer
+	information. The regional sales groups are now only responsible for recording
+	their sales in the database.</p>
+
+	<p class="NormalFormat3">Manhours are saved so the sales groups can focus on sales.
+	The data will be consistent across groups and more accurate. Reporting will be quick
+	and easy, allowing management to make decisions faster and with greater
+	confidence.</p>
+
+	<h3>3.6.2 Interconnection</h3>
+
+	<p class="NormalFormat3">In that same company, I.T. is tasked with keeping phone
+	records for the sales group. They will see how much total time the sales
+	employees spend on the phone and how long they spend on each call. I.T. links
+	up both sets of data by employee, so they can now relate sales to phone
+	statistics in reports. Now that I.T. can tie company sales records to phone
+	records, employees can see information like who is closing sales in the least
+	amount of time, or the most. This reporting allows management to provide
+	rewards or additional training where it might be needed.</p>
+
+	<p class="NormalFormat3">This sort of data interconnection is getting more advance
+	and complex all the time. Interconnecting information on potential customers is
+	one of the fastest areas of growth in the tech world.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717252"></a>3.7 Size</h2>
+	</div>
+
+	<p class="NormalFormat2">The sheer size of data a database can handle can’t be
+	matched by spreadsheet software. The number of rows available in Excel is
+	limited to just over 1,000,000. SQL Server tables can and do hold billions of
+	rows. Its real limit is how much storage space is available.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717253"></a>3.8 Product comparison summary</h2>
+	</div>
+
+	The below table summarizes all the previous sections of part 3:
+
+	<table id="ExcelSQLCompare">
+
+	<tbody><tr>
+	<th style="width:16%;"></th>
+	<th style="width:42%;">Microsoft Excel</th>
+	<th style="width:42%;">Microsoft SQL Server</th>
+	</tr>
+
+	<tr>
+	<td class="RowHeading">Ease of use</td>
+	<td>Very user-friendly</td>
+	<td>Need training</td>
+	</tr>
+	 
+	<tr>
+	<td class="RowHeading">Data presentation</td>
+	<td>Yes, excellent tools</td>
+	<td>No built-in tools, but many external options.</td>
+	</tr>
+	 
+	<tr>
+	<td class="RowHeading">Unique ID</td>
+	<td>Not really possible. You could cobble something together that would look like a unique ID, but it wouldn’t be something that Excel would enforce.</td>
+	<td>Fundamental to database design</td>
+	</tr>
+	 
+	<tr>
+	<td class="RowHeading">Relational data</td>
+	<td>Not possible. There are lookup functions, but it’s not the same thing at all.</td>
+	<td>Fundamental to database design</td>
+	</tr>
+
+	<tr>
+	<td class="RowHeading">Transactions</td>
+	<td>No such thing</td>
+	<td>Easily implemented</td>
+	</tr>
+	 
+	<tr>
+	<td class="RowHeading">Data rule enforcement</td>
+	<td>Simple rules</td>
+	<td>
+	Fundamental to database design.<br>
+	Rules can be as complex as you like.
+	</td>
+	</tr>
+	 
+	<tr>
+	<td class="RowHeading">Backups</td>
+	<td>Manual</td>
+	<td>Automatable and can be restored at the transactional level</td>
+	</tr>
+	 
+	<tr>
+	<td class="RowHeading">Data centralization</td>
+	<td>Only works if you have a small amount of data to centralize. Even then, there would be user-contention/ownership issues constantly.</td>
+	<td>Ideal.&nbsp;There are multiple tool suites that facilitate this process.</td>
+	</tr>
+	 
+	<tr>
+	<td class="RowHeading">Size</td>
+	<td>1,000,000 rows</td>
+	<td>Only limited by hard drive space</td>
+	</tr>
+	 
+	</tbody></table>
+
+	<div class="Heading1">
+	<h1><a id="_Toc45717254"></a>4.When should you use a database?</h1>
+	</div>
+
+	<p class="NormalFormat1">Choosing when to make the move to a database is difficult.&nbsp;
+	If you’ve been dependent on spreadsheets, it’s going to be a big change to the
+	way you and your employees have been doing things. As a database developer, I
+	am biased, but I would say that the sooner you make the move the better. The
+	longer you and your employees continue with your old methods, the harder they
+	are to change. Consider a few of the key elements in this section to help you
+	make the call.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717255"></a>4.1 Size</h2>
+	</div>
+
+	<p class="NormalFormat2">Microsoft Excel can hold just over 1,000,000 rows of data,
+	but you should move to a database long before coming close to that limit.&nbsp;
+	Stability and speed alone will represent issues in a spreadsheet containing
+	hundreds of thousands of rows.</p>
+
+	<p class="NormalFormat2">Despite that 1,000,000-row limit seeming a long way off,
+	Excel is not really intended to be used for data that large. If you have a
+	spreadsheet coming up on 100,000 rows, it’s time to think about using a
+	database. Who is going to consume 100,000 rows of data in Excel, except to
+	summarize it? If you are summarizing all that data, you are already better off
+	in a database and just outputting to Excel for your users. A database is going
+	to do it better and faster.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717256"></a>4.2 Complexity</h2>
+	</div>
+
+	<p class="NormalFormat2">My professional experience has been that as soon as you try
+	to interconnect Excel spreadsheets, you are in trouble. Before I was trained
+	to become a database developer, I worked in a department that was trying to
+	consolidate data for management from a variety of sources. I shudder now to
+	think about the number of links present on the main dashboard of that
+	spreadsheet.</p>
+
+	<p class="NormalFormat2" style="page-break-after:avoid;">Over-complicated Excel
+	spreadsheet example</p>
+
+	<p class="NormalFormat2"><img id="ComplexExcel" src="https://gdurl.com/3LrG" width="623" height="274" ></p>
+
+	<p class="NormalFormat2">Our department owned some of the spreadsheets linked from
+	that dashboard, but some were owned by other departments or were autogenerated
+	from applications. Every morning was spent collecting data from different
+	sources and tracking down issues. Sometimes an application failed to produce
+	the spreadsheet on time, or a spreadsheet had been changed so the cell we were
+	aiming for wasn’t there, or the whole file was missing.</p>
+
+	<p class="NormalFormat2">Everything we had should have been moved over to a database
+	a long time prior to it getting to that point. That’s my lived worst-case
+	scenario, but where is the threshold? When is it time to move to a database?</p>
+
+	<p class="NormalFormat2">I can’t recommend it highly enough to move sooner rather
+	than later. The benefits gained are huge, and the learning curve for basic
+	database functionality isn’t as high as you think. As soon as you have
+	multiple people updating similar data, or you are trying to link spreadsheets
+	together, you need to seriously consider moving to a database.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717257"></a>4.3 Cost</h2>
+	</div>
+
+	<p class="NormalFormat2">Cost is usually the biggest factor holding people back from
+	making the switch. You have three basic factors to consider: hardware, software,
+	and salaries. The costs of SQL Server are very low for a small user base but
+	escalate quickly when you scale up. For specific cost information, see the
+	link under <a href="#_License_costs">License costs</a>.</p>
+
+	<h3>4.3.1 Scenarios</h3>
+
+	<ol class="ol-01">
+	<li>You are a business owner with 15 employees, and you have the time and
+	inclination to learn how to use SQL Server yourself. You have a large amount
+	of data to deal with but have no plans to serve customers data directly. From
+	a cost perspective, this is an almost ideal situation to migrate to SQL
+	Server. You can use SQL Server Express, which is free. This will leave you
+	with the cost of a server, but for 15 employees, almost any PC will work fine
+	as a server.</li>
+	<li>You are the CEO of a small company of 75 employees. You do not have time
+	to work with SQL Server yourself, and you want to offer a website directly to
+	your customers where they can read about your large selection of products. You
+	can get SQL Server Standard Edition. It’s going to cost you at least $8,000
+	for a license that will last for years and $3,000 for a good server.</li>
+	<li>You are the CTO of a company of 350 employees
+	spread out all over the country, your employees need all kinds of data handled,
+	and need to be processing sales directly with customers. It’s time to go to the
+	cloud. You’ll be looking at a data warehouse and web serving configuration.&nbsp;
+	You won’t have to pay for servers yourself, or the staff to maintain them, but
+	the cloud services are going to be $5,000/month and are going to increase as
+	your user base increases in size.</li>
+	</ol>
+
+	<div class="Heading1">
+	<h1><a id="_Toc45717258"></a>5. How a database works</h1>
+	</div>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717259"></a>5.1 Under the hood</h2>
+	</div>
+
+	<p class="NormalFormat2">I have put a link in the <a href="#_Materials">Materials
+	section</a> of this document where you can download SQL Server’s free Express
+	Edition. If you chose to do so, also download and install SQL Server
+	Management Studio to provide you with a graphical user interface.</p>
+
+	<p class="NormalFormat2">In the sections below, we are going to talk about some of
+	the underlying pieces of SQL Server, and being able to view them may help your
+	understanding. I would encourage you to try it out.</p>
+
+	<h3>5.1.1 Master Database</h3>
+
+	<p class="NormalFormat3">As the name implies, the master database is the database
+	over all the other databases. It’s essentially a database of databases. All
+	the components of databases you create are listed there, though not the data.</p>
+
+	<p class="NormalFormat3">You will find information about:</p>
+
+	<ul class="ul-02">
+	<li>Security (e.g. - users, logins)</li>
+	<li>Database Objects (e.g. - databases, tables, columns)</li>
+	<li>Server Objects (e.g. - database instances, links to other servers)</li>
+	<li>Server Settings (e.g. - database replication)</li>
+	</ul>
+
+	<p class="NormalFormat3">While I encourage you to look around in your own instance of
+	this database, use extreme caution in a professional situation; the risk to
+	cause major problems is high.</p>
+
+	<h3>5.1.2 MSDB Database</h3>
+
+	<p class="NormalFormat3">The MSDB database stores information about major services
+	provided in SQL Server. &nbsp;If you are wondering what "MSDB" stands for, I cannot
+	enlighten you, because Microsoft has failed to make it clear. I think of it as
+	"Microsoft Database," but that is not official.</p>
+
+	<p class="NormalFormat3">Main services controlled from MSDB are:</p>
+
+	<ul class="ul-02">
+	<li>SQL Server Agent – Server "jobs" are controlled by this service.&nbsp;
+	Jobs are how we automate processes directly on SQL Server without the need for
+	an external application. For example, you could schedule a nightly data delete
+	from a database or a weekly transfer of data between databases.</li>
+	<li>Database Mail – Emails can be generated directly from the server
+	by this service, usually instigated by a job process.</li>
+	<li>Service Broker – Advanced functions of built-in workload
+	distribution are handled here.</li>
+	</ul>
+
+	<p class="NormalFormat3">MSDB also stores logs of backups and restores of databases
+	and supports features of SSMS.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717260"></a>5.2 Data flow</h2>
+	</div>
+
+	<p class="NormalFormat2">Below is a conceptual diagram
+	of how an application interacts with a database. As you can see, there are
+	multiple layers that information must traverse before an application will know
+	that a submitted database request has been completed, and data (if any) is
+	returned.</p>
+
+	<p class="NormalFormat2"><img src="https://gdurl.com/Vu0b"></p>
+
+	<div class="Heading1">
+	<h1><a id="_Toc45717261"></a>6. Introduction to SQL</h1>
+	</div>
+
+	<p class="NormalFormat1">The <a href="https://www.ansi.org/">American National Standards Institute (ANSI)</a>
+	has set standards for the language the databases use: SQL (Structured Query
+	Language). Nearly all major database platforms conform to ANSI standards.</p>
+
+	<p class="NormalFormat1">On top of that, different database technologies provide
+	custom functions and capabilities of their own, but the basic underlying syntax
+	for SQL statements should be consistent if a database claims to be
+	ANSI-compliant.</p>
+
+	<p class="NormalFormat1">Common code formatting practices have keywords in all caps,
+	to visually differentiate them from objects like tables and columns. That is
+	why the following sections will have capital letters used for SQL keywords.</p>
+
+	<p class="NormalFormat1">These are going to be simple examples, intended to
+	demonstrate the basics. Those basics are going to come up often when working
+	on databases.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717262">6.1 DDL (Data Definition Language)</a></h2>
+	</div>
+
+	<h3>6.1.1 CREATE TABLE</h3>
+
+	<p class="NormalFormat3">This is the basic building block of your database, and it is
+	where most of the database-side data validation will be set. The name of our
+	example table is "HumanResources.Department". "HumanResources" is the schema
+	name and "Department" is the table name.</p>
+
+	<p class="NormalFormat3">A schema is often used as a way of categorizing your tables
+	but has additional functionality too. They are most often used for security
+	and organization.</p>
+
+	<p class="NormalFormat3">Below the "schema.table" name is the column names section. Each
+	of the columns in your table receives the data type that is defined here. Data
+	types set the size of memory available for the data stored there and are
+	strictly enforced. If you try to insert or update data to an invalid type, the
+	SQL statement will fail.</p>
+
+	<div class="CodeBlock">
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">CREATE TABLE </span>
+	<span class="SQLFieldNames">HumanResources.Department</span>
+	<span class="SQLPunctuation">(</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLFieldNames">DepartmentID </span>
+	<span class="SQLKeywords">smallint</span>
+	<span class="SQLPunctuation">,</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLKeywords">Name varchar</span>
+	<span class="SQLPunctuation">(</span>
+	<span class="SQLNumbers">50</span>
+	<span class="SQLPunctuation">),</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLFieldNames">GroupName </span>
+	<span class="SQLKeywords">varchar</span>
+	<span class="SQLPunctuation">(</span>
+	<span class="SQLNumbers">50</span>
+	<span class="SQLPunctuation">),</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLFieldNames">ModifiedDate </span>
+	<span class="SQLKeywords">datetime</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLPunctuation">)</span>
+	</p>
+
+	</div>
+
+	<p class="NormalFormat3">To read more about data types, please see 
+	<a href="https://docs.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver15">Microsoft’s documentation on SQL Server data types.</a>
+	</p>
+
+	<h3>6.1.2 CREATE INDEX</h3>
+
+	<p class="NormalFormat3">Indexes are created on tables to allow data to be found very
+	quickly. To learn more about them see the <a href="#_Toc45717265">Indexes</a>
+	section of this document.</p>
+
+	<div class="CodeBlock">
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">CREATE INDEX </span>
+	<span class="SQLFieldNames">DeptID</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">ON </span>
+	<span class="SQLFieldNames">HumanResources.Department </span>
+	<span class="SQLPunctuation">(</span>
+	<span class="SQLFieldNames">DepartmentID</span>
+	<span class="SQLPunctuation">)</span>
+	</p>
+
+	</div>
+
+	<h3>6.1.3 DROP TABLE</h3>
+
+	<p class="NormalFormat3" style="page-break-after:avoid;">This statement is going to be
+	difficult to undo, and all data in the table will be lost, so be very sure
+	before dropping a table.</p>
+
+	<div class="CodeBlock">
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">DROP TABLE </span>
+	<span class="SQLFieldNames">HumanResources.Department</span>
+	</p>
+
+	</div>
+
+	<h3>6.1.4 ALTER TABLE</h3>
+
+	<p class="NormalFormat3">This statement is used to add new columns, drop columns, or
+	alter existing columns from a table. If you drop an existing column, all data
+	in it will be lost.</p>
+
+	<div class="CodeBlock">
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">ALTER TABLE </span>
+	<span class="SQLFieldNames">HumanResources.Department</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">ADD </span>
+	<span class="SQLFieldNames">DepartmentLocation </span>
+	<span class="SQLKeywords">varchar</span>
+	<span class="SQLPunctuation">(</span>
+	<span class="SQLNumbers">50</span>
+	<span class="SQLPunctuation">)</span>
+	</p>
+
+	</div>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717263">6.2 DML (Data Definition Language)</a></h2>
+	</div>
+
+	<p class="NormalFormat2">There are four basic concepts in databases: Create, Read,
+	Update, and Delete. "CRUD" is the common mnemonic to remember them.</p>
+
+	<p class="NormalFormat2">The SQL keywords map neatly over to:</p>
+
+	<ul class="ul-01">
+	<li>Create = INSERT</li>
+	<li>Read = SELECT</li>
+	<li>Update = UPDATE</li>
+	<li>Delete = DELETE</li>
+	</ul>
+
+	<h3>6.2.1 INSERT</h3>
+
+	<p class="NormalFormat3">INSERT is how you add new rows of data to the database. You
+	need to strictly conform to all the data types for every column, but you can
+	exclude columns from the insert statement if the column allows NULL values to
+	be inserted. "NULL" means "no data" and doesn’t have a value.</p>
+
+	<div class="CodeBlock">
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">INSERT INTO </span>
+	<span class="SQLFieldNames">Person.Person</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLPunctuation">(</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLFieldNames">BusinessEntityID</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">PersonType</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">NameStyle</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">Title</span>
+	<span class="SQLPunctuation">,</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLFieldNames">FirstName</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">MiddleName</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">LastName</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">Suffix</span>
+	<span class="SQLPunctuation">,</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLFieldNames">EmailPromotion</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">AdditionalContactInfo</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">Demographics</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">rowguid</span>
+	<span class="SQLPunctuation">,</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLFieldNames">ModifiedDate</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLPunctuation">)</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">VALUES</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLPunctuation">(</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLNumbers">20778</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLString">'IN'</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLNumbers">0</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLKeyword2">NULL</span>
+	<span class="SQLPunctuation">,</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLString">'Simon'</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLKeyword2">NULL</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLString">'Breakfast'</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLKeyword2">NULL</span>
+	<span class="SQLPunctuation">,</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLNumbers">1</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLKeyword2">NULL</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLKeyword2">NULL</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFunctions">newID</span>
+	<span class="SQLPunctuation">(),</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLFunctions">getdate</span>
+	<span class="SQLPunctuation">()</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLPunctuation">)</span>
+	</p>
+
+	</div>
+
+	<h3>6.2.2 UPDATE</h3>
+
+	<p class="NormalFormat3">UPDATE statements are used to change existing data in your
+	database. You can update any number of columns in a single statement, but only
+	one table at a time. They will succeed or fail together.</p>
+
+	<p class="NormalFormat3">The WHERE clause is a part of a query that allows you to restrict
+	the rows impacted or returned. It is not changing any values like the code in
+	the SET clause of the UPDATE statement. You don’t usually need to address
+	every row in a table, so WHERE clauses are very common.</p>
+
+	<div class="CodeBlock">
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">UPDATE </span>
+	<span class="SQLFieldNames">Person.Person</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">SET </span>
+	<span class="SQLFieldNames">MiddleName </span>
+	<span class="SQLPunctuation">= </span>
+	<span class="SQLString">'P'</span>
+	<span class="SQLPunctuation">,</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLFieldNames">EmailPromotion </span>
+	<span class="SQLPunctuation">= </span>
+	<span class="SQLNumbers">2</span>
+	<span class="SQLPunctuation">,</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLFieldNames">ModifiedDate </span>
+	<span class="SQLPunctuation">= </span>
+	<span class="SQLFunctions">GETDATE</span>
+	<span class="SQLPunctuation">()</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">WHERE </span>
+	<span class="SQLFieldNames">BusinessEntityID </span>
+	<span class="SQLPunctuation">= </span>
+	<span class="SQLNumbers">20778</span>
+	</p>
+
+	</div>
+
+	<h3>6.2.3 DELETE</h3>
+
+	<p class="NormalFormat3">DELETE removes rows from your table. You can delete all
+	data in a table with one statement, so be careful.</p>
+
+	<div class="CodeBlock">
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">DELETE </span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">FROM </span>
+	<span class="SQLFieldNames">Person.Person</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">WHERE </span>
+	<span class="SQLFieldNames">BusinessEntityID </span>
+	<span class="SQLPunctuation">= </span>
+	<span class="SQLNumbers">20778</span>
+	</p>
+
+	</div>
+
+	<h3>6.2.4 SELECT</h3>
+
+	<p class="NormalFormat3">SELECT is how you read data from the database. Simple
+	SELECT statements are very common when building an application, or during data
+	validation.</p>
+
+	<div class="CodeBlock">
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">SELECT </span>
+	<span class="SQLFieldNames">DepartmentID</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLKeywords">Name</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">GroupName</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">ModifiedDate</span>
+	<span class="SQLPunctuation">,</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">FROM </span>
+	<span class="SQLFieldNames">HumanResources.Department</span>
+	</p>
+
+	</div>
+
+	<h3>6.2.5 JOIN</h3>
+
+	<p class="NormalFormat3">More complex SELECT statements usually involve interrelating
+	the data in multiple tables. You do this by adding JOIN statements to the
+	SELECT. You join tables using a common data element.</p>
+
+	<p class="NormalFormat3">In the below example, we are reading a table that contains
+	information about what department employees served in over a period (HumanResources.EmployeeDepartmentHistory).&nbsp;
+	It stores the employee’s ID for a date range to show which department ID and
+	shift ID applied at the time.</p>
+
+	<p class="NormalFormat3">Since that table is mostly just ID codes, we need to join it
+	up to other tables to get a human-readable set of data. We join this history
+	table to the person table, department table, and the shift table using the
+	unique IDs found there.</p>
+
+	<p class="NormalFormat3">Once those tables are joined, we can assemble a report that
+	anyone can read. I added in the criteria that the "EndDate IS NULL" because an
+	EndDate being present implies that the employee no longer works in that
+	department, and I want current data.</p>
+
+	<div class="CodeBlock">
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">SELECT </span>
+	<span class="SQLFieldNames">P.FirstName</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">P.LastName</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">D.GroupName</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">S.StartTime</span>
+	<span class="SQLPunctuation">,</span>
+	<span class="SQLFieldNames">S.EndTime</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">FROM </span>
+	<span class="SQLFieldNames">EmployeeDepartmentHistory EDH</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLKeyword2">JOIN </span>
+	<span class="SQLFieldNames">Person.Person P</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLKeywords">ON </span>
+	<span class="SQLFieldNames">P.BusinessEntityID = EDH.BusinessEntityID</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLKeyword2">JOIN </span>
+	<span class="SQLFieldNames">HumanResources.Department D</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLKeywords">ON </span>
+	<span class="SQLFieldNames">EDH.DepartmentID = D.DepartmentID</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLKeyword2">JOIN </span>
+	<span class="SQLFieldNames">HumanResources.Shift S</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLKeywords">ON </span>
+	<span class="SQLFieldNames">EDH.ShiftID = S.ShiftID</span>
+	</p>
+
+	<p class="CodeFormat1">
+	<span class="SQLKeywords">WHERE </span>
+	<span class="SQLFieldNames">EDH.EndDate </span>
+	<span class="SQLKeyword2">IS NULL </span>
+	</p>
+
+	</div>
+
+	<p class="NormalFormat3">Please note that these joins are only in scope for this
+	statement and do not represent a permanent structural change like a foreign key
+	does</p>
+
+	<div class="Heading1">
+
+	<h1><a id="_Toc45717264">7.Performance</a></h1>
+
+	</div>
+
+	<div class="Heading2">
+
+	<h2><a id="_Toc45717265">7.1 Indexes</a></h2>
+
+	</div>
+
+	<p class="NormalFormat2">Indexes are how a database finds data quickly. Imagine a
+	reference book in a 3-ring binder with hundreds of pages of information. An
+	index is like adding tabs to sections of the book. The tabs let you flip
+	quickly to the section you need.</p>
+
+	<p class="NormalFormat2">You can add multiple indexes to a table; however, you must
+	be careful how many you add. If you index every column in the table, it’s like
+	putting a tab on every page of that book. It adds a lot of extra weight to the
+	book while being nearly useless.</p>
+
+	<p class="NormalFormat2">With one exception (clustered index described below) every
+	index takes up hard drive space. Unused indexes will slow down queries on the
+	table, so be prudent in your index choices.</p>
+
+	<h3>7.1.1 Clustered Index</h3>
+
+	<p class="NormalFormat3">A clustered index is the physical order in which the data is
+	stored on the hard drive. You might put the clustered index on the "LastName"
+	column of a table of employees. Each row would be stored alphabetically by
+	last name on the hard drive. This makes accessing data by last name very fast.</p>
+
+	<p class="NormalFormat3">Often it is best to put the clustered index on the unique
+	identifier column of each table. Data stored in order by a known unique value
+	helps the database engine with optimizing query efficiency.</p>
+
+	<p class="NormalFormat3">A table with no clustered index is known as a "heap". There
+	are virtually no situations where a heap is better than an ordered table.</p>
+
+	<h3>7.1.2 Primary Keys</h3>
+
+	<p class="NormalFormat3">The primary key is a column or combination of columns that
+	uniquely identifies a row of data in a table. A table can only have one
+	primary key. It cannot be set to a null value. It is often used as the
+	clustered index on the table.</p>
+
+	<p class="NormalFormat3">Usually, a value is created for a primary key if the data in
+	the table doesn’t already have one. For example, if you were creating an
+	"employees" table, you might set their social security number as the table’s
+	primary key. However, this is often not permitted, as this might expose
+	employees’ Social Security numbers. So, a new column with a new value would be
+	added to the table to stand as the primary key.</p>
+
+	<h3>7.1.3 Other Indexes</h3>
+
+	<p class="NormalFormat3">You can add more indexes to your tables as your applications
+	and reporting require them. Additional indexes can be flagged as unique or not
+	depending on the data in the column. Flagging an index as unique will force
+	data integrity checks, and non-unique values will not be allowed in that column.</p>
+
+	<div class="Heading2">
+	<h2><a id="_Toc45717266">7.2 Execution plans</a></h2>
+	</div>
+
+	<p class="NormalFormat2">Demand for tuning your database will grow as its size and
+	user-demand both increase. Performance tuning is crucial to keeping your costs
+	under control and your users happy. There are books and numerous tools that
+	can be utilized to help you tune your database.</p>
+
+	<p class="NormalFormat2">The bread-and-butter of tuning is reviewing the execution
+	plan for your SQL. An execution plan shows you how SQL Server is breaking down
+	your SQL into logical chunks and organizes them to give you your results.</p>
+
+	<h3>7.2.1 Example Execution Plan 1</h3>
+
+	<p class="NormalFormat3">This query returns a list of first names from the "Person.Person"
+	table and sorts them in alphabetical order.</p>
+
+	<p class="NormalFormat3"><img id="ExecutionPlan1" src="https://gdurl.com/WeEa"></p>
+
+	<p class="NormalFormat3">This is a very simple execution plan generated by SQL Server
+	Management Studio (SSMS). The results are read from right to left, as the
+	arrows point. It is showing you that it is retrieving the list of FirstName
+	values from "Person.Person", then sorting them, and returning them to the
+	screen.</p>
+
+	<p class="NormalFormat3">To tune a query, you look at the "Cost" values, and target
+	steps with high costs. In this case, it’s the sort step, but this SQL doesn’t
+	need tuning. Even though the relative cost is high, that is normal and
+	appropriate for a sort in a query this size.</p>
+
+	<h3>7.2.2 Example Execution Plan 2</h3>
+
+	<p class="NormalFormat3">Let’s look at one with a problem. The below query is very
+	similar to the last, but now we are restricting the results to just employees
+	whose first names begin with the letter "s".</p>
+
+	<p class="NormalFormat3"><img id="ExecutionPlan2" src="https://gdurl.com/Chaw"></p>
+
+	<p class="NormalFormat3">The higher cost has shifted over to the data retrieval,
+	where we would prefer it not to be. Beyond that, SQL Server has even suggested
+	a fix to our issue. The green text there is a SQL statement that it recommends
+	we use to resolve the issue.</p>
+
+	<p class="NormalFormat3">Below the SQL statement is easier to read. It just adds an
+	index to the FirstName column.</p>
+
+	<div class="CodeBlock">
+
+	<p class="CodeFormat2">
+	<span class="SQLKeywords">CREATE NONCLUSTERED INDEX </span>
+	<span class="SQLFieldNames">IX_FirstName</span>
+	</p>
+
+	<p class="CodeFormat2">
+	<span class="SQLKeywords">ON </span>
+	<span class="SQLFieldNames">Person.Person</span>
+	<span class="SQLPunctuation">(</span>
+	<span class="SQLFieldNames">FirstName</span>
+	<span class="SQLPunctuation">)</span>
+	</p>
+
+	</div>
+
+	<p class="NormalFormat3">After the index is added, we see a much better execution
+	plan. The index has not only resolved the performance problem caused by
+	filtering the FirstName column but has resolved the speed issue with the sort.&nbsp;
+	SQL Server goes straight to the new index and does all its work very quickly.</p>
+
+	<p class="NormalFormat3"><img id="ExecutionPlan3" src="https://gdurl.com/vp1G"></p>
+
+	<p class="NormalFormat3">&nbsp;</p>
+
+	<p class="NormalFormat3">The execution plans offered in SSMS are vital but will not
+	resolve all your problems. As I said before, there are books written on this
+	topic, but even more frequently, just knowing your database well is going to be
+	the key to resolving performance issues.</p>
+
+	<div class="Heading1">
+	<h1><a id="_Toc45717267"></a>8. Conclusion</h1>
+	</div>
+
+	<p class="NormalFormat1">I hope this brief look at databases has given you a better
+	idea of what they are like and the purposes they can serve. If you have found
+	this document at all daunting, then I would encourage you to <a href="#_Materials">download SQL Server Express Edition</a> and use this document
+	as a reference to understand what you are seeing and doing there.</p>
+
+	<p class="NormalFormat1">I have included a <a href="#_Materials">link to a sample
+	database</a> created by Microsoft for you to play around with. Give it a try. I think you’ll be
+	surprised by how much you can do.</p>
+
+	<div class="Heading1">
+	<h1><a id="_Toc45717268">9.Appendix</a></h1>
+	</div>
+
+	<h3><a id="_License_costs"></a>9.1.1 License costs</h3>
+
+	<p class="NormalFormat3">Link to MS SQL Server license costs: <a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019-pricing">https://www.microsoft.com/en-us/sql-server/sql-server-2019-pricing</a></p>
+
+	<h3><a id="_Materials"></a>9.1.2 Materials</h3>
+
+	<p class="NormalFormat3">Install SQL Server</p>
+
+	<ol class="ol-01">
+	<li>Go to <a href="https://www.microsoft.com/en-us/sql-server/sql-server-downloads">SQLServer Downloads</a></li>
+	<li>Scroll down to the free editions</li>
+	<li>Download either Developer or Express editions</li>
+	<li>Install the application</li>
+	</ol>
+
+	<p class="NormalFormat3">Install <a href="https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms">SQL Server Management Studio (SSMS)</a></p>
+
+	<p class="NormalFormat3">Sample Database: <a href="https://docs.microsoft.com/en-us/sql/samples/adventureworks-install-configure?view=sql-server-ver15">AdventureWorks</a></p>
+
+	<h3>9.1.3 Sources</h3>
+
+	<p class="NormalFormat3"><a href="https://docs.microsoft.com/en-us/sql/t-sql/language-reference">Microsoft
+	T-SQL Reference</a> - Guide on the MS SQL Server language</p>
+
+	<p class="NormalFormat3"><a href="https://www.sqlservercentral.com/">SQL Server
+	Central</a> – Excellent reference for authoritative articles about MS SQL
+	Server</p>
+
+	<p class="NormalFormat3"><a href="http://coding-geek.com/how-databases-work/">How
+	Databases Work</a> – Appears to be good for reference information, though a bit
+	difficult to consume.</p>
+
+	<p class="NormalFormat3"><a href="https://hub.packtpub.com/how-sql-server-handles-data-under-the-hood/">https://hub.packtpub.com/how-sql-server-handles-data-under-the-hood/</a></p>
+
+	<p class="NormalFormat3">Decorative images’ source is labeled in MS Word alt text.&nbsp;
+	All other images are created by the author.</p>
+
+	<div class="Heading1">
+	<h1><a id="_Toc45717269">10. Disclaimer</a></h1>
+	</div>
+
+	<p class="NormalFormat1">Bellevue College, the author of this document, and course instructor
+	take no responsibility for any harm caused by utilization of the information
+	contained in this document, use of the embedded links, or the content therein,
+	or use of the attached database scripts.</p>
+
+	<div class="Heading1">
+	<h1><a id="_Toc45717270">11. Copyright</a></h1>
+	</div>
+
+	<p class="NormalFormat1">©Copyright 2020 by Stuart Ketcham</p>
+
+	<p class="NormalFormat1">This document was completed as a requirement for the
+	Technical Writing Certificate program at Bellevue College, Spring 2020</p>
+
+</div>
