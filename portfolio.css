@@ -170,3 +170,49 @@ footer img {
    margin-left: auto;
    margin-right: auto;
 }
+
+/*
+   Collapsible sections
+   Based on W3 Schools example
+*/
+.collapsible {
+  cursor: pointer;
+  padding: 18px;
+  border: none;
+  outline: none;
+  font-size: inherit;
+  font-style: inherit;
+  background-color: white;
+  width: 400px;
+}
+
+.active, .collapsible:hover {
+  color: #555;
+}
+
+.content {
+  display: none;
+  overflow: hidden;
+  padding: 20px;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/*Gaston Means HTML formatting*/
+.gaston {
+   padding: 30px;
+}
+
+.gaston h3 {
+   font-size:12pt;
+   line-height: 1.5em;
+}
+.gaston p {
+   padding: 5px;
+   line-height: 1.5em;
+}
+.gaston h2 {
+   padding-top: 10px;
+}

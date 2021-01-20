@@ -1,0 +1,189 @@
+/*
+   Author:    	 Stuart Ketcham
+   Filename:    final_project.css
+   Date:        10/30/2020 
+   Project:     Eastside Cheese Company
+*/
+
+
+/* reset styles */
+html {
+   font-size: 16px;
+}
+a, article, body, div, footer, header, h1, h2, h3, nav, p, img, figure, figcaption {
+   border: 0;
+   padding: 0;
+   margin: 0;
+}
+
+.main {
+   max-width: 800px;
+   margin: 0 auto;
+   position: relative;      
+}
+
+
+/* header section */
+h1 {
+   text-align: center;
+   font-family: Bitter, "Times New Roman", Times, serif;
+   font-weight: 800;
+   color: white;
+   background-color: black;
+   font-size: 2.3em;
+}
+h3 {
+   margin: 5px 0;
+}
+
+
+/* site navigation bar */
+nav.sitenavigation {
+   color: #34180f;
+   text-align: center;
+   background-color: #B8944D;
+}
+nav.sitenavigation div {
+   margin: 0.3em 0.5em;
+   display: inline-block;
+}
+nav.sitenavigation p {
+   margin: 0.3em 0.5em;
+   display: inline-block;
+}
+nav.sitenavigation a:link {
+   text-decoration: none;
+   color: #34180f;
+}
+nav.sitenavigation a:visited {
+   color: #744f42;
+}
+nav.sitenavigation a:hover, nav.sitenavigation a:focus {
+   color: ivory;
+   transition: all .2s linear;
+}
+
+
+/* main content */
+article div {
+   max-width: 800px;
+   margin: 0 auto;
+   padding: 0 3% 1em;
+   background-color: ivory;
+   overflow: auto;
+}
+
+
+body {
+   font-family: Verdana, Geneva, sans-serif;
+   background: url("images/CheeseTile.jpg");
+}
+
+.store {
+	float: right;
+	width: 57%;
+	margin-top: 10px; 
+}
+
+.passion {
+	border: 5px;
+	border-color: black;
+	width: 38%;
+	margin: 10px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.calendar {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.container {
+   max-width: 800px;
+   margin: 0 auto;
+   background-color: white;
+   position: relative;
+}
+
+.map {
+  height: 400px;
+  width: 100%;
+}
+
+.fb-like {
+   padding-top: 5px;
+}
+
+#makingcheese {
+  border-radius: 25px;
+  background: ivory;
+  padding: 2px; 
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.calendar {
+   border:solid 1px #777;
+   width: 98%;
+   height: 600px;
+   margin: 10px;
+}
+
+.cheeseleft {
+   float:left;
+   clear:right;
+   width: 35%;
+}
+
+.cheeseright    {
+   float:right;
+   width: 35%;
+   clear: left;
+}
+
+
+/* footer section */
+footer {
+   padding: 0.6em;
+   background-color: black;
+   color: ivory;
+   text-align: center;
+   height: 20px;
+}
+
+.phone {
+   float: right;
+}
+
+.cheesebullet {
+	width: 24px;
+	height: 24px;
+	vertical-align: baseline;
+	display: inline-block;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-image: url("images/CheeseBullet.png");
+   margin: 0px 8px;
+}

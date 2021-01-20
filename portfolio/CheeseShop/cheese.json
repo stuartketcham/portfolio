@@ -1,0 +1,32 @@
+[
+   {
+      "CheeseName":"Gouda",
+      "Source":"\tMade on premises",
+      "Price":"$1.20",
+      "Bookmark":"#gouda"
+   },
+   {
+      "CheeseName":"Aged sharp cheddar",
+      "Source":"Made on premises",
+      "Price":"$2.00",
+      "Bookmark":"#sharpcheddar"
+   },
+   {
+      "CheeseName":"Medium cheddar",
+      "Source":"Made on premises",
+      "Price":"$0.99",
+      "Bookmark":"#mediumcheddar"
+   },
+   {
+      "CheeseName":"Swiss",
+      "Source":"Sihlfeld, Switzerland",
+      "Price":"$4.00",
+      "Bookmark":"#swiss"
+   },
+   {
+      "CheeseName":"Stilton",
+      "Source":"Wymondham, Leicestershire, UK",
+      "Price":"$4.50",
+      "Bookmark":"#stilton"
+   }
+]

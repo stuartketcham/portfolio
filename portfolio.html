@@ -36,13 +36,30 @@
             <div class="item4">
                <img class="imgSellMyself" src="img/DatabaseBasics.png" alt="">
                <p class="icanheader">Database Basics</p>
+               <button type="button" class="collapsible">Technical paper for beginners with databases<br>(more...)</button>
+               <div class="content">
+                 <p>I wrote this paper for a technical writing class.  It is intended to introduce those unfamiliar with databases to, why someone might want to use a database, technical features, and introductory SQL.</p>
+               </div>
                <p><a href="portfolio/DatabaseBasics.docx">Database Basics - MS Word Document</a></p>
+               <p>
             </div>
             <div class="item5">
                <img class="imgSellMyself" src="https://stuartketcham.files.wordpress.com/2021/01/clip_image001.jpg" alt="Gaston Means face">
                <p class="icanheader">Criminology Paper</p>
+               <button type="button" class="collapsible">Criminology paper written about a relative<br>(more...)</button>
+               <div class="content">
+                 <p>I wrote this paper for a Criminology writing class.  It is about a cousin of mine (a few times removed) who was an infamous criminal in the early 20th century.  Please review it as an example of my writing skill.</p>
+               </div>
                <p><a href="portfolio/Criminology-Gaston Bullock Means.docx">Gaston Bullock Means - MS Word Document</a></p>
                <p><a href="portfolio/GastonMeans.html">Gaston Bullock Means - HTML Document</a></p>
+            </div>
+            <div class="item6">
+               <img class="imgSellMyself" src="img/SayCheese.jpg" alt="">
+               <p class="icanheader">Simple Website</p>
+               <p><a href="portfolio/CheeseShop/index.html" target="_blank" rel="noopener noreferrer">Cheese Shop</a></p>
+            </div>
+            <div class="item7">
+               Power BI
             </div>
          </div>
          <footer>
@@ -50,4 +67,20 @@
          </footer>
       </div>
    </body>
+   <script>
+      var coll = document.getElementsByClassName("collapsible");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var content = this.nextElementSibling;
+          if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+        });
+      }
+   </script>
 </html>

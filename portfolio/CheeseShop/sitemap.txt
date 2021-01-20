@@ -1,0 +1,7 @@
+http://www.example.com/index.html
+http://www.example.com/buy.html
+http://www.example.com/aboutus.html
+http://www.example.com/cheese.html
+http://www.example.com/events.html
+http://www.example.com/learning.html
+http://www.example.com/results.html

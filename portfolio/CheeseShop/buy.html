@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+   <head>
+
+      <!--
+         Author:      Stuart Ketcham  
+         Date:        12/16/2020     
+         Final Project
+      -->
+
+      <title>Eastside Cheese Company</title>
+      <link rel="stylesheet" href="final_project.css">
+      <link rel="shortcut icon" href="images/CheeseIcon.ico">
+      <meta name="viewport" content="width=device-width">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script>
+         $(document).ready(function() {
+         $.getJSON('http://192.168.1.52:8020/CheeseShop/cheese.json', function(cheese,status) {
+            for (i = 0; i < cheese.length; i = i + 1) {
+               console.log(cheese[i].CheeseName)
+               $("#cheesetype").append("<option value='"+ cheese[i].CheeseName + "'>" + cheese[i].CheeseName + "</option>");
+            }
+         });
+         });  
+      </script>
+   </head>
+
+   <body>
+      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="vf8fiVsc"></script>
+      <div class="main">
+         <header>
+            <h1>Locations</h1>
+         </header>
+         <nav class="sitenavigation">
+            <p><a href="index.html">Home</a></p>
+            <p><a href="cheese.html">Our Cheeses</a></p>     
+            <p><a href="events.html">Events</a></p>
+            <p><a href="learning.html">Learning</a></p>            
+            <p><a href="buy.html">How to Buy</a></p>
+            <p><a href="aboutus.html">About Us</a></p>
+            <div class="fb-like" data-href="https://developers.facebook.com/cengagebrain/" data-width="" data-layout="button" data-action="like" data-size="small" data-share="false"></div>
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Best cheese ever!" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>             
+         </nav>
+         <article>
+            <div>
+            <h3>Please come see us in person</h3>
+            </div>
+            <div id="map" class="center">
+               <p>Redmond Location</p>
+               <p>8125 161st Avenue Northeast</p>
+               <p>Redmond, WA</p>               
+               <a href="https://goo.gl/maps/4WVFuwAb6peouXhV9" target="_blank"><img src="images/redmondmap.jpg" alt="Redmond Location"></a>
+               <p>Binghamton Location</p>
+               <p>168 Water St</p>
+               <p>Binghamton, NY</p>
+               <a href="https://goo.gl/maps/ZQ1LSZ8JouyjfTXw5" target="_blank"><img src="images/binghamtonmap.jpg" alt="Binghamton Location"></a>
+            </div>
+            <div>
+               <h3>Have our cheese delivered to your door</h3>
+               <form action="results.html">
+                  <fieldset class="contactinfo">
+                     <legend>Contact Information</legend>
+                     <label for="nameinput">
+                        Name
+                        <input type="text" name="name" id="nameinput" placeholder="First and last name">
+                     </label>
+                     <label for="emailinput">
+                        Email
+                        <input type="email" name="email" id="emailinput" placeholder="address@example.com">
+                     </label>
+                     <label for="phoneinput">
+                        Phone
+                        <input type="tel" name="phone" id="phoneinput">
+                     </label>                  
+                  </fieldset>
+                  <fieldset class="cheeseorder">
+                     <legend>Your Cheese</legend>
+							<select id="cheesetype" name="cheesetype">
+							</select>
+                     <label for="cheeseamount">
+                        Amount of cheeese (in ounces)
+                        <input type="number" name="amount" id="cheeseamount">
+                     </label>
+                     <fieldset class="shippingmethod">
+                        <legend>How would you like your cheese shipped?</legend>
+                        <label for="Ground mail">
+                           <input type="radio" name="shippingmethod" id="ground_mail" value="Ground mail" checked>
+                           Ground mail
+                        </label>
+                        <label for="express">
+                           <input type="radio" name="shippingmethod" id="express" value="Express">
+                           Express
+                        </label>
+                        <label for="overnight">
+                           <input type="radio" name="shippingmethod" id="overnight" value="Overnight">
+                           Overnight
+                        </label>                     
+                     </fieldset>   
+                     <fieldset class="giftwrap">
+                        <legend>Giftwrap</legend>
+                        <label>
+                           <input type="checkbox" id="sun" value="Giftwrap" name="giftwrap" onclick="GiftWrap()">
+                           Please giftwrap my cheese
+                        </label>
+                     </fieldset> 
+                     <fieldset class="additionalinfo">
+                        <legend>Special Order</legend>
+                        <label for="additionalinfo">
+                           <p>We have contacts all over the world.  Special orders are our specialty!</p>
+                           <p>Tell us all about it</p>
+                           <textarea name="additionalinfo" id="additionalinfo" rows="4" cols="55">
+                           </textarea>
+                        </label>                  
+                     </fieldset>
+                  </fieldset>
+                  <fieldset class="submitbutton">
+                     <input type="submit" id="submit" value="Submit">
+                  </fieldset>
+               </form>
+            </div>
+         </article>            
+         <footer itemtype="http://schema.org/LocalBusiness" itemscope>
+            <span itemprop="name">Eastside Cheese Co.</span>
+            <span class="cheesebullet"></span>
+            <span itemprop="address" itemtype="http://schema.org/PostalAddress" itemscope>
+               <span itemprop="streetAddress">168 Water St.</span><span class="cheesebullet"></span>
+               <span itemprop="addressLocality">Binghamton</span>, 
+               <span itemprop="addressRegion">NY </span>
+               <span itemprop="postalCode">13901</span>
+            </span><span class="cheesebullet"></span> 
+            <span itemprop="telephone"> (218) 555-5253</span>         
+         </footer>         
+      </div>
+      <script>
+         function GiftWrap() {
+            alert("Giftwrapping will cost an extra $5.00");
+         }
+       
+
+      </script>      
+   </body>
+</html>
