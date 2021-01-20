@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
    <head>
-
       <!--
          Author:      Stuart Ketcham
          Date:        1/17/2021
          Portfolio Website
       -->
-
       <title>Stuart Ketcham Portfolio</title>
       <meta name="description" content="Stuart Ketcham sample works portfolio">
       <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -20,48 +16,38 @@
 
    <body>
       <div class="main">
-         <header>
-            <h1>Stuart Ketcham Portfolio</h1>
-         </header>
-         <nav class="sitenavigation">
-            <div><p><a href="index.html">Home</a></p></div>
-            <div><p><a href="aboutme.html">About Me</a></p></div>
-            <div><p><a href="contact.html">Contact</a></p></div>
-            <div class="currentpage"><p><a href="portfolio.html">Portfolio</a></p></div>
-         </nav>
-         <article>
-            <div class="lead">
+         <div class="grid-container">
+            <div class="item1">
+               <header>
+                  <h1>Stuart Ketcham Portfolio</h1>
+               </header>
+            </div>
+            <div class="item2">
+               <nav class="sitenavigation">
+                  <div><p><a href="index.html">Home</a></p></div>
+                  <div><p><a href="aboutme.html">About Me</a></p></div>
+                  <div><p><a href="contact.html">Contact</a></p></div>
+                  <div class="currentpage"><p><a href="portfolio.html">Portfolio</a></p></div>
+               </nav>
+            </div>
+            <div class="item3">
                <h2>Portfolio</h2>
-               <!--<h4>Don’t hesitate to reach out with the contact information below, or send a message using the form.</h4>-->
             </div>
-            <h2 class="flexcenter">Database Basics</h2>
-            <div class="flex-container">
-               <div class="flexneatcolumn">
-                  <a href="portfolio/databasebasics.html">Database Basics - HTML Document</a>
-               </div>
-               <div class="flexneatcolumn">
-                  <a href="portfolio/DatabaseBasics.docx">Database Basics - MS Word Document</a>
-               </div>
+            <div class="item4">
+               <img class="imgSellMyself" src="img/DatabaseBasics.png" alt="">
+               <p class="icanheader">Database Basics</p>
+               <p><a href="portfolio/DatabaseBasics.docx">Database Basics - MS Word Document</a></p>
             </div>
-            <h2 class="flexcenter">Criminology Paper</h2>
-            <div class="flex-container">
-               <div class="flexneatcolumn">
-                  <a href="portfolio/GastonMeans.html">Gaston Bullock Means - HTML Document</a>
-               </div>
-               <div class="flexneatcolumn">
-                  <a href="portfolio/Criminology-Gaston Bullock Means.docx">Gaston Bullock Means - MS Word Document</a>
-               </div>
+            <div class="item5">
+               <img class="imgSellMyself" src="https://stuartketcham.files.wordpress.com/2021/01/clip_image001.jpg" alt="Gaston Means face">
+               <p class="icanheader">Criminology Paper</p>
+               <p><a href="portfolio/Criminology-Gaston Bullock Means.docx">Gaston Bullock Means - MS Word Document</a></p>
+               <p><a href="portfolio/GastonMeans.html">Gaston Bullock Means - HTML Document</a></p>
             </div>
-         </article>
+         </div>
          <footer>
             <a href="https://www.linkedin.com/in/stuart-ketcham/"><img src="img/LI-Logo.png"></a>
          </footer>
       </div>
    </body>
-   <script type="text/javascript">
-   emailE = "outlook.com'
-   emailE = ('stuartketcham' + '@' + emailE)
-   document.write('<A href="mailto:' + emailE + '">' + emailE + '</a>')
-   </script>
-   <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
 </html>
