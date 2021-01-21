@@ -5,8 +5,8 @@
    <head>
 
       <!--
-         Author:      Stuart Ketcham  
-         Date:        12/16/2020     
+         Author:      Stuart Ketcham
+         Date:        12/16/2020
          Final Project
       -->
 
@@ -17,20 +17,17 @@
    </head>
 
    <body>
-      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v9.0" nonce="vf8fiVsc"></script>
       <div class="main">
          <header>
-            <h1>Locations</h1>
+            <h1>Eastside Cheese Company</h1>
          </header>
          <nav class="sitenavigation">
             <p><a href="index.html">Home</a></p>
-            <p><a href="cheese.html">Our Cheeses</a></p>     
+            <p><a href="cheese.html">Our Cheeses</a></p>
             <p><a href="events.html">Events</a></p>
-            <p><a href="learning.html">Learning</a></p>            
+            <p><a href="learning.html">Learning</a></p>
             <p><a href="buy.html">How to Buy</a></p>
             <p><a href="aboutus.html">About Us</a></p>
-            <div class="fb-like" data-href="https://developers.facebook.com/cengagebrain/" data-width="" data-layout="button" data-action="like" data-size="small" data-share="false"></div>
-            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-text="Best cheese ever!" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>             
          </nav>
          <article>
             <div>
@@ -39,7 +36,7 @@
             <div id="map" class="center">
                <p>Redmond Location</p>
                <p>8125 161st Avenue Northeast</p>
-               <p>Redmond, WA</p>               
+               <p>Redmond, WA</p>
                <a href="https://goo.gl/maps/4WVFuwAb6peouXhV9" target="_blank"><img src="images/redmondmap.jpg" alt="Redmond Location"></a>
                <p>Binghamton Location</p>
                <p>168 Water St</p>
@@ -62,14 +59,14 @@
                      <label for="phoneinput">
                         Phone
                         <input type="tel" name="phone" id="phoneinput">
-                     </label>                  
+                     </label>
                   </fieldset>
                   <fieldset class="cheeseorder">
                      <legend>Your Cheese</legend>
 							<select id="cheesetype" name="cheesetype">
 							   <option value="gouda">Gouda</option>
-							   <option value="sharpcheddar">Sharp Cheddar</option>    
-							   <option value="mediumcheddar">Medium Cheddar</option>                           
+							   <option value="sharpcheddar">Sharp Cheddar</option>
+							   <option value="mediumcheddar">Medium Cheddar</option>
 							   <option value="swiss">Swiss</option>
 							   <option value="stilton">Stilton</option>
 							</select>
@@ -90,15 +87,15 @@
                         <label for="overnight">
                            <input type="radio" name="shippingmethod" id="overnight" value="Overnight">
                            Overnight
-                        </label>                     
-                     </fieldset>   
+                        </label>
+                     </fieldset>
                      <fieldset class="giftwrap">
                         <legend>Giftwrap</legend>
                         <label>
                            <input type="checkbox" id="sun" value="Giftwrap" name="giftwrap" onclick="GiftWrap()">
                            Please giftwrap my cheese
                         </label>
-                     </fieldset> 
+                     </fieldset>
                      <fieldset class="additionalinfo">
                         <legend>Special Order</legend>
                         <label for="additionalinfo">
@@ -106,7 +103,7 @@
                            <p>Tell us all about it</p>
                            <textarea name="additionalinfo" id="additionalinfo" rows="4" cols="55">
                            </textarea>
-                        </label>                  
+                        </label>
                      </fieldset>
                   </fieldset>
                   <fieldset class="submitbutton">
@@ -114,23 +111,23 @@
                   </fieldset>
                </form>
             </div>
-         </article>            
+         </article>
          <footer itemtype="http://schema.org/LocalBusiness" itemscope>
             <span itemprop="name">Eastside Cheese Co.</span>
             <span class="cheesebullet"></span>
             <span itemprop="address" itemtype="http://schema.org/PostalAddress" itemscope>
                <span itemprop="streetAddress">168 Water St.</span><span class="cheesebullet"></span>
-               <span itemprop="addressLocality">Binghamton</span>, 
+               <span itemprop="addressLocality">Binghamton</span>,
                <span itemprop="addressRegion">NY </span>
                <span itemprop="postalCode">13901</span>
-            </span><span class="cheesebullet"></span> 
-            <span itemprop="telephone"> (218) 555-5253</span>         
-         </footer>         
+            </span><span class="cheesebullet"></span>
+            <span itemprop="telephone"> (218) 555-5253</span>
+         </footer>
       </div>
       <script>
       function GiftWrap() {
         alert("Giftwrapping will cost an extra $5.00");
       }
-      </script>      
+      </script>
    </body>
 </html>
