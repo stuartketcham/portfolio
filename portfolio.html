@@ -6,6 +6,7 @@
          Date:        1/17/2021
          Portfolio Website
       -->
+      <meta charset="utf-8"/>
       <title>Stuart Ketcham Portfolio</title>
       <meta name="description" content="Stuart Ketcham sample works portfolio">
       <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -50,11 +51,15 @@
                <div class="content">
                  <p>I wrote this paper for a Criminology writing class.  It is about a cousin of mine (a few times removed) who was an infamous criminal in the early 20th century.  Please review it as an example of my writing skill.</p>
                </div>
-               <p><a href="portfolio/Criminology-Gaston Bullock Means.docx">Gaston Bullock Means - MS Word Document</a></p>
+               <p><a href="portfolio/Criminology-GastonBullockMeans.docx">Gaston Bullock Means - MS Word Document</a></p>
                <p><a href="portfolio/GastonMeans.html">Gaston Bullock Means - HTML Document</a></p>
             </div>
             <div class="item6">
                <img class="imgSellMyself" src="img/SayCheese.jpg" alt="">
+               <button type="button" class="collapsible">Website for a fictional cheese shop<br>(more...)</button>
+               <div class="content">
+                 <p>I wrote this paper for an HTML class.  It includes numerous examples of HTML skills I have learned, including SEO, JSON, </p>
+               </div>
                <p class="icanheader">Simple Website</p>
                <p><a href="portfolio/CheeseShop/index.html" target="_blank" rel="noopener noreferrer">Cheese Shop</a></p>
             </div>
@@ -63,24 +68,24 @@
             </div>
          </div>
          <footer>
-            <a href="https://www.linkedin.com/in/stuart-ketcham/"><img src="img/LI-Logo.png"></a>
+            <a href="https://www.linkedin.com/in/stuart-ketcham/"><img src="img/LI-Logo.png" alt="LinkedIn"></a>
          </footer>
       </div>
-   </body>
-   <script>
-      var coll = document.getElementsByClassName("collapsible");
-      var i;
+      <script>
+         var coll = document.getElementsByClassName("collapsible");
+         var i;
 
-      for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function() {
-          this.classList.toggle("active");
-          var content = this.nextElementSibling;
-          if (content.style.display === "block") {
-            content.style.display = "none";
-          } else {
-            content.style.display = "block";
-          }
-        });
-      }
-   </script>
+         for (i = 0; i < coll.length; i++) {
+           coll[i].addEventListener("click", function() {
+             this.classList.toggle("active");
+             var content = this.nextElementSibling;
+             if (content.style.display === "block") {
+               content.style.display = "none";
+             } else {
+               content.style.display = "block";
+             }
+           });
+         }
+      </script>
+   </body>
 </html>
