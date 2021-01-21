@@ -14,17 +14,6 @@
       <link rel="stylesheet" href="final_project.css">
       <link rel="shortcut icon" href="images/CheeseIcon.ico">
       <meta name="viewport" content="width=device-width">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script>
-         $(document).ready(function() {
-         $.getJSON('http://192.168.1.52:8020/CheeseShop/cheese.json', function(cheese,status) {
-            for (i = 0; i < cheese.length; i = i + 1) {
-               console.log(cheese[i].CheeseName)
-               $("#cheesetype").append("<option value='"+ cheese[i].CheeseName + "'>" + cheese[i].CheeseName + "</option>");
-            }
-         });
-         });  
-      </script>
    </head>
 
    <body>
@@ -78,6 +67,11 @@
                   <fieldset class="cheeseorder">
                      <legend>Your Cheese</legend>
 							<select id="cheesetype" name="cheesetype">
+							   <option value="gouda">Gouda</option>
+							   <option value="sharpcheddar">Sharp Cheddar</option>    
+							   <option value="mediumcheddar">Medium Cheddar</option>                           
+							   <option value="swiss">Swiss</option>
+							   <option value="stilton">Stilton</option>
 							</select>
                      <label for="cheeseamount">
                         Amount of cheeese (in ounces)
@@ -134,11 +128,9 @@
          </footer>         
       </div>
       <script>
-         function GiftWrap() {
-            alert("Giftwrapping will cost an extra $5.00");
-         }
-       
-
+      function GiftWrap() {
+        alert("Giftwrapping will cost an extra $5.00");
+      }
       </script>      
    </body>
 </html>

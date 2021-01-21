@@ -14,16 +14,6 @@
       <link rel="stylesheet" href="final_project.css">
       <link rel="shortcut icon" href="images/CheeseIcon.ico">
       <meta name="viewport" content="width=device-width">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <script>
-         $(document).ready(function() {
-         $.getJSON('http://192.168.1.52:8020/CheeseShop/cheese.json', function(cheese,status) {
-            for (i = 0; i < cheese.length; i = i + 1) {
-               $("#cheesetable").append("<tr><td><a href='"+ cheese[i].Bookmark + "'>" + cheese[i].CheeseName + "</a></td><td>" + cheese[i].Source + "</td><td>" + cheese[i].Price + "</td></tr>");
-            }
-         });
-         });  
-      </script>      
    </head>
 
    <body>
@@ -46,12 +36,37 @@
             <div>
                <h3>Welcome to Eastside Cheese Company</h3>
                <h4>We are proud of our cheese collection.  Here is a sample of some of our most popular cheeses.  Please come in to our store to see the best selection of cheeses in the area.</h4>
-               <table id="cheesetable">
+               <table>
                   <tr>
                      <th>Name</th>
                      <th>Source</th>
                      <th>Price per ounce</th>
                   </tr>
+                  <tr>
+                     <td><a href="#gouda">Gouda</a></td>
+                     <td>Made on premises</td>
+                     <td>$1.20</td>
+                  </tr>
+                  <tr>
+                     <td><a href="#sharpcheddar">Aged sharp cheddar</a></td>
+                     <td>Made on premises</td>
+                     <td>$2.00</td>
+                  </tr>
+                  <tr>
+                     <td><a href="#mediumcheddar">Medium cheddar</a></td>
+                     <td>Made on premises</td>
+                     <td>$0.99</td>
+                  </tr>
+                  <tr>
+                     <td><a href="#swiss">Swiss</a></td>
+                     <td>Sihlfeld, Switzerland</td>
+                     <td>$4.00</td>
+                  </tr>
+                  <tr>
+                     <td><a href="#stilton">Stilton</a></td>
+                     <td>Wymondham, Leicestershire, UK</td>
+                     <td>$4.50</td>
+                  </tr>                
                </table>
             </div>
             <div>
