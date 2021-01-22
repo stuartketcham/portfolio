@@ -186,6 +186,10 @@ footer img {
   margin-right: auto;
 }
 
+.content a {
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
 
 /*Gaston Means HTML formatting*/
 .gaston {
