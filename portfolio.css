@@ -145,6 +145,39 @@ figcaption {
    width:10%;
 }
 
+.LI-badge {
+  padding: 30px 400px;
+}
+
+.blog_heading {
+  padding:30px;
+  text-align: left;
+}
+
+.blog_entry {
+   font-family: 'PT Sans', sans-serif;
+   line-height: 2;
+   text-align: left;
+}
+
+.blog_entry p {
+   padding: 15px 40px 0;
+}
+
+.blog_entry ul {
+   padding: 0px 0px 0px 70px;
+}
+
+.blog_entry ol {
+   padding: 0px 0px 0px 70px;
+}
+
+.blog_subheading {
+  padding:20px 0px 10px 40px;
+  text-align: left;
+  font-weight: 700;
+}
+
 
 /* footer section */
 footer {
@@ -156,6 +189,13 @@ footer img {
    display: block;
    margin-left: auto;
    margin-right: auto;
+}
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
 
 /*
