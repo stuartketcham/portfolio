@@ -297,6 +297,21 @@ footer img {
     .item9 {
       grid-area: 7 / 2 / 7 / 4;
     }  
+
+    .item10 {
+      grid-area: 8 / 1 / 8 / 5;
+      padding: 50px;
+    }
+    
+    .item11 {
+      grid-area: 9 / 1 / 9 / 5;
+      padding: 50px;
+    }  
+  
+    .item12 {
+      grid-area: 10 / 1 / 10 / 5;
+      padding: 50px;
+    }
   
    .item4, .item5, .item6, .item7 {
       padding: 10px;
